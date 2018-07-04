@@ -1,0 +1,16 @@
+---
+galaxy_info:
+  author: Benjamin Gröner
+  description: Write a dotenv file for a roots/bedrock based word press setup
+  company: CONQOON
+
+  license: MIT
+
+  min_ansible_version: 2.0
+
+  galaxy_tags:
+  - Wordpress
+  - Configuration
+  - dotenv
+
+dependencies: []

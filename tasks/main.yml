@@ -1,0 +1,47 @@
+---
+- name: Check and generate AUTH_KEY id necessary
+  set_fact:
+    wp_dotenv_auth_key: "{{ lookup('password', '/tmp/wp_dotenv_auth_key chars=ascii_letters,digits,hexdigits,punctuation length=64') }}"
+  when: wp_dotenv_auth_key is not defined
+
+- name: Check and generate SECURE_AUTH_KEY id necessary
+  set_fact:
+    wp_dotenv_secure_auth_key: "{{ lookup('password', '/tmp/wp_dotenv_secure_auth_key chars=ascii_letters,digits,hexdigits,punctuation length=64') }}"
+  when: wp_dotenv_secure_auth_key is not defined
+
+- name: Check and generate LOGGED_IN_KEY id necessary
+  set_fact:
+    wp_dotenv_logged_in_key: "{{ lookup('password', '/tmp/wp_dotenv_logged_in_key chars=ascii_letters,digits,hexdigits,punctuation length=64') }}"
+  when: wp_dotenv_logged_in_key is not defined
+
+- name: Check and generate NONCE_KEY id necessary
+  set_fact:
+    wp_dotenv_secure_nonce_key: "{{ lookup('password', '/tmp/wp_dotenv_secure_nonce_key chars=ascii_letters,digits,hexdigits,punctuation length=64') }}"
+  when: wp_dotenv_secure_nonce_key is not defined
+
+- name: Check and generate AUTH_SALT id necessary
+  set_fact:
+    wp_dotenv_auth_salt: "{{ lookup('password', '/tmp/wp_dotenv_auth_salt chars=ascii_letters,digits,hexdigits,punctuation length=64') }}"
+  when: wp_dotenv_auth_salt is not defined
+
+- name: Check and generate SECURE_AUTH_SALT id necessary
+  set_fact:
+    wp_dotenv_secure_auth_salt: "{{ lookup('password', '/tmp/wp_dotenv_secure_auth_salt chars=ascii_letters,digits,hexdigits,punctuation length=64') }}"
+  when: wp_dotenv_secure_auth_salt is not defined
+
+- name: Check and generate LOGGED_IN_SALT id necessary
+  set_fact:
+    wp_dotenv_logged_in_salt: "{{ lookup('password', '/tmp/wp_dotenv_logged_in_salt chars=ascii_letters,digits,hexdigits,punctuation length=64') }}"
+  when: wp_dotenv_logged_in_salt is not defined
+
+- name: Check and generate NONCE_SALT id necessary
+  set_fact:
+    wp_dotenv_nonce_salt: "{{ lookup('password', '/tmp/wp_dotenv_nonce_salt chars=ascii_letters,digits,hexdigits,punctuation length=64') }}"
+  when: wp_dotenv_nonce_salt is not defined
+
+- name: Write .env file
+  template:
+    src: "{{ wp_dotenv_template }}"
+    dest: "{{ wp_dotenv_target_dir }}/.env"
+    mode: 0755
+  become: yes

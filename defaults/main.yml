@@ -1,0 +1,5 @@
+wp_dotenv_db_tableprefix: "wp_"
+wp_dotenv_debug: "false"
+wp_dotenv_file_owner: "root"
+wp_dotenv_file_group: "root"
+wp_dotenv_template: ".env.j2"
